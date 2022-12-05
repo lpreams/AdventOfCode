@@ -5,7 +5,7 @@ import aocutil.IO;
 public class Day01 {
 
 	public static void main(String[] args) {
-		String s = IO.lines(2017, 1).findFirst().get().trim();
+		String s = IO.string(2017, 1).trim();
 		int len = s.length();
 		
 		s = s+s;
