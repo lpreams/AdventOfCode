@@ -35,6 +35,14 @@ public class IO {
 		return lines(year, day).collect(Collectors.joining(System.lineSeparator()));
 	}
 	
+	public static Iterable<String[]> linesIterSplit(int year, int day, String split) {
+		return new Iterable<String[]>() {
+			public Iterator<String[]> iterator() {
+				return lines(year, day).map(str -> str.split(split)).iterator();
+			}
+		};
+	}
+	
 	public static Iterable<String> linesIter(int year, int day) {
 		return new Iterable<String>() {
 			public Iterator<String> iterator() {

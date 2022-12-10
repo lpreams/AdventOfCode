@@ -10,14 +10,14 @@ import aocutil.IO;
 public class Day06 {
 
 	public static void main(String[] args) {
-		a();
-		b();
+		a(80);
+		b(256);
 	}
 	
-	private static void b() {
+	private static void b(int N) {
 		long[] counts = new long[9];
 		initAges().forEach(i -> ++counts[i]);
-		for (int n=0; n<256; ++n) { // only go to 80 to solve pt1
+		for (int n=0; n<N; ++n) { // only go to 80 to solve pt1
 			long newFish = counts[0];
 			for (int i=1; i<counts.length; ++i) {
 				counts[i-1] = counts[i];
@@ -29,9 +29,9 @@ public class Day06 {
 		System.out.println(Arrays.stream(counts).sum());
 	}
 	
-	private static void a() {
+	private static void a(int N) {
 		ArrayList<Integer> list = initAges().mapToObj(x->x).collect(Collectors.toCollection(ArrayList::new));
-		for (int n=0; n<80; ++n) { // don't bother trying 256, beware the oom killer
+		for (int n=0; n<N; ++n) { // don't bother trying 256, beware the oom killer
 			ArrayList<Integer> newFish = new ArrayList<>();
 			for (int i=0; i<list.size(); ++i) {
 				int f = list.get(i);
@@ -49,6 +49,6 @@ public class Day06 {
 	}
 
 	private static IntStream initAges() {
-		return Arrays.stream(IO.lines(2021, 6).findFirst().get().split(",")).mapToInt(Integer::parseInt);
+		return Arrays.stream(IO.string(2021, 6).split(",")).mapToInt(Integer::parseInt);
 	}
 }
