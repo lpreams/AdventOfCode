@@ -40,4 +40,36 @@ public class Point {
 	public Point right() {
 		return new Point(x+1, y);
 	}
+	
+	public Point ul() {
+		return new Point(x-1, y+1);
+	}
+	
+	public Point ur() {
+		return new Point(x+1, y+1);
+	}
+
+	public Point dl() {
+		return new Point(x-1, y-1);
+	}
+	
+	public Point dr() {
+		return new Point(x+1, y-1);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
