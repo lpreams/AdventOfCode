@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,11 +43,7 @@ public class IO {
 	 * @return
 	 */
 	public static Iterable<String[]> linesIterSplit(int year, int day, String split) {
-		return new Iterable<String[]>() {
-			public Iterator<String[]> iterator() {
-				return lines(year, day).map(str -> str.split(split)).iterator();
-			}
-		};
+		return () -> lines(year, day).map(str -> str.split(split)).iterator();
 	}
 	
 	/**
@@ -58,12 +53,7 @@ public class IO {
 	 * @return
 	 */
 	public static Iterable<String> linesIter(int year, int day) {
-		return new Iterable<String>() {
-			public Iterator<String> iterator() {
-				return lines(year, day).iterator();
-			}
-			
-		};
+		return () -> lines(year, day).iterator();
 	}
 	
 	/**
