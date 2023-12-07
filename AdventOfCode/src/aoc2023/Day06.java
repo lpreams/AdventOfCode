@@ -23,9 +23,9 @@ public class Day06 {
 				line.next();
 				while (line.hasNext()) times.add(line.nextInt());
 			}
-			try (Scanner a = new Scanner(scan.nextLine())) {
-				a.next();
-				while (a.hasNext()) dists.add(a.nextInt());
+			try (Scanner line = new Scanner(scan.nextLine())) {
+				line.next();
+				while (line.hasNext()) dists.add(line.nextInt());
 			}
 		}
 		System.out.println(IntStream.range(0, times.size()).mapToLong(i -> ways(times.get(i), dists.get(i))).reduce(1, (a, b) -> a * b));
@@ -34,16 +34,16 @@ public class Day06 {
 	public static void b() {
 		long time, dist;
 		try (Scanner scan = IO.scanner(2023, 6)) {
-			try (Scanner a = new Scanner(scan.nextLine())) {
-				a.next();
+			try (Scanner line = new Scanner(scan.nextLine())) {
+				line.next();
 				String t = "";
-				while (a.hasNext()) t += (a.nextInt());
+				while (line.hasNext()) t += (line.nextInt());
 				time = Long.parseLong(t);
 			}
-			try (Scanner a = new Scanner(scan.nextLine())) {
-				a.next();
+			try (Scanner line = new Scanner(scan.nextLine())) {
+				line.next();
 				String t = "";
-				while (a.hasNext()) t += (a.nextInt());
+				while (line.hasNext()) t += (line.nextInt());
 				dist = Long.parseLong(t);
 			}
 		}
@@ -51,11 +51,6 @@ public class Day06 {
 	}
 
 	private static long ways(long totalTime, long bestDist) {
-		return LongStream.range(1, totalTime - 1).filter(i -> simulate(totalTime, i) > bestDist).count();
+		return LongStream.range(1, totalTime - 1).filter(holdTime -> (holdTime >= totalTime || holdTime <= 0 ? 0 : (totalTime - holdTime) * holdTime) > bestDist).count();
 	}
-
-	private static long simulate(long totalTime, long holdTime) {
-		return holdTime >= totalTime || holdTime <= 0 ? 0 : (totalTime - holdTime) * holdTime;
-	}
-
 }
